@@ -12,14 +12,26 @@ EFCoreTrainingDBContext context = new();
 
 //AsNoTracking fonksiyonu ile yapılan sorgulamalarda, verileri elde edebilir, bu verileri istenilen noktalarda kullanabilir lakin veriler üzerinde herhangi bir değişiklik/update işlemi yapamayız.
 
-var kullanicilar =await context.Kullanicilar.AsNoTracking().ToListAsync();
-foreach (var kullanici in kullanicilar)
-{
-	Console.WriteLine(kullanici.Adi);
-	kullanici.Adi = $"yeni {kullanici}";
-	context.Kullanicilar.Update(kullanici); //tracking i kestiğimiz için savechangestaki track mekanizması devre dışı kalacaktır. bu sebeple nesne takip edilmediği için update fonk kullanılır. 
-}
-await context.SaveChangesAsync();
+//var kullanicilar =await context.Kullanicilar.AsNoTracking().ToListAsync();
+//foreach (var kullanici in kullanicilar)
+//{
+//	Console.WriteLine(kullanici.Adi);
+//	kullanici.Adi = $"yeni {kullanici}";
+//	context.Kullanicilar.Update(kullanici); //tracking i kestiğimiz için savechangestaki track mekanizması devre dışı kalacaktır. bu sebeple nesne takip edilmediği için update fonk kullanılır. 
+//}
+//await context.SaveChangesAsync();
+#endregion
+#region AsNoTrackingWithIdentityResolution
+//CT(Change Tracker) mekanizması yinelenen verileri tekil instance olarak getirir. Buradan ekstradan bir performans kazancı söz konusudur.
+
+//Bizler yaptığımız sorgularda takip mekanizmasının AsNoTracking metodu ile maliyetini kırmak isterken bazen maliyete sebebiyet verebiliriz.(Özellikle ilişkisel tabloları sorgularken bu duruma dikkat etmemiz gerekyior)
+
+//AsNoTracking ile elde edilen veriler takip edilmeyeceğinden dolayı yinelenen verilerin ayrı instancelarda olmasına sebebiyet veriyoruz. Çünkü CT mekanizması takip ettiği nesneden bellekte varsa eğer aynı nesneden birdaha oluşturma gereği duymaksızın o nesneye ayrı noktalardaki ihtiyacı aynı instance üzerinden gidermektedir.
+
+//Böyle bir durumda hem takip mekanizmasının maliyeitni ortadan kaldırmak hemide yinelenen dataları tek bir instance üzerinde karşılamak için AsNoTrackingWithIdentityResolution fonksiyonunu kullanabiliriz.
+
+//var kitaplar = await context.Kitaplar.Include(k => k.Yazarlar).AsNoTrackingWithIdentityResolution().ToListAsync();
+//AsNoTrackingWithIdentityResolution fonksiyonu AsNoTracking fonksiyonuna nazaran görece yavaştır/maliyetlidir lakin CT'a nazaran daha performanslı ve az maliyetlidir.
 #endregion
 public class EFCoreTrainingDBContext : DbContext
 {
