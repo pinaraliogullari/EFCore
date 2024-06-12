@@ -46,7 +46,7 @@ class Departman
 
 //Bir property'nin navigation property olabilmesi için kesinlikle entity türünden olması gerekiyor.
 
-//Navigation property'ler entity'lerdeki tanımlarına göre n'e n yahut 1'e n şeklinde ilişki türlerini ifade etmektedirler. Sonraki derslerimizde ilişkisel yapıları tam teferruatlı pratikte incelerken navigation proeprty'lerin bu özelliklerinden istifade ettiğimizi göreceksiniz.
+//Navigation property'ler entity'lerdeki tanımlarına göre n'e n yahut 1'e n şeklinde ilişki türlerini ifade etmektedirler.
 #endregion
 
 #region İlişki Türleri
