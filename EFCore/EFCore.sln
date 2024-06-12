@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persisting.Data.Update", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persisting.Data.Delete", "Persisting.Data.Delete\Persisting.Data.Delete.csproj", "{72F93AA5-F8A8-444A-95C9-4388DAD200D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Querying", "Querying\Querying.csproj", "{51853CB8-4441-424E-8889-5BE6C948F13E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{72F93AA5-F8A8-444A-95C9-4388DAD200D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72F93AA5-F8A8-444A-95C9-4388DAD200D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F93AA5-F8A8-444A-95C9-4388DAD200D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51853CB8-4441-424E-8889-5BE6C948F13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51853CB8-4441-424E-8889-5BE6C948F13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51853CB8-4441-424E-8889-5BE6C948F13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51853CB8-4441-424E-8889-5BE6C948F13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
