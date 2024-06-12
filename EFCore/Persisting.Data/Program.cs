@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 #region Veri Nasıl Eklenir?
 //ETicaretContext context = new();
@@ -116,3 +115,4 @@ public class Urun
 	public string UrunAdi { get; set; }
 	public float Fiyat { get; set; }
 }
+
