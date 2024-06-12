@@ -33,6 +33,14 @@ EFCoreTrainingDBContext context = new();
 //var kitaplar = await context.Kitaplar.Include(k => k.Yazarlar).AsNoTrackingWithIdentityResolution().ToListAsync();
 //AsNoTrackingWithIdentityResolution fonksiyonu AsNoTracking fonksiyonuna nazaran görece yavaştır/maliyetlidir lakin CT'a nazaran daha performanslı ve az maliyetlidir.
 #endregion
+#region AsTracking
+//Context üzerinden gelen dataların CT tarafından takip ewdilmesini iradeli bir şekilde ifade etmemizi sağlayan fonksiyondur.
+//UseQueryTrackingBehavior metodunun davranışı gereği uygulama seviyesinde CT'ın default olarak devrede olup olmamasını ayarlıyor olacağız. Eğer ki default olarak pasif hale getirilirse böyle durumda takip mekanizmasının ihtiyaç olduğu sorgularda AsTracking fonksiyonunu kullanabilir ve böylece takip mekanizmasını iradeli bir şekilde devreye sokmuş oluruz.
+//var kitaplar = await context.Kitaplar.AsTracking().ToListAsync();
+#endregion
+#region UseQueryTrackingBehavior
+//EF Core seviyesinde/uygulama seviyesinde ilgili contextten gelen verilerin üzerinde CT mekanizmasının davranışı temel seviyede belirlememizi sağlayan fonksiyondur. Yani konfigürasyon fonksiyonudur.
+#endregion
 public class EFCoreTrainingDBContext : DbContext
 {
     public DbSet<Kullanici> Kullanicilar { get; set; }
@@ -43,6 +51,7 @@ public class EFCoreTrainingDBContext : DbContext
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+		optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
 		base.OnConfiguring(optionsBuilder);
 	}
 }
