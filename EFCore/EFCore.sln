@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updating.RelatedData", "Upd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deleting.RelatedData", "Deleting.RelatedData\Deleting.RelatedData.csproj", "{9BA5F390-67CB-4E3E-B883-296F7FE6F48D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.Configurations", "EFCore.Configurations\EFCore.Configurations.csproj", "{A7C9A7DD-60D7-415F-80B3-BB5A2B26FE26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{9BA5F390-67CB-4E3E-B883-296F7FE6F48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BA5F390-67CB-4E3E-B883-296F7FE6F48D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA5F390-67CB-4E3E-B883-296F7FE6F48D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C9A7DD-60D7-415F-80B3-BB5A2B26FE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C9A7DD-60D7-415F-80B3-BB5A2B26FE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C9A7DD-60D7-415F-80B3-BB5A2B26FE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C9A7DD-60D7-415F-80B3-BB5A2B26FE26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
