@@ -178,12 +178,12 @@ class ApplicationDbContext : DbContext
 #region 2. Yöntem
 //n to n ilişkisi fluent api üzerinden tasarlanmışsa kullanılan bir yöntemdir.
 //Author author = new()
-//{
-//	AuthorName = "Ufuk",
-//	Books = new HashSet<BookAuthor>()
+//				{
+//					authorname = "ufuk",
+//					books = new hashset<bookauthor>()
 //	{
-//		new() { BookId = 1 }, // var olan kitap ile yazarı ilişkilendirerek ekleme
-//		new() { Book = new() { BookName = "B Kitap" } // yeni kitap ile yazarı ilişkilendirerek ekleme
+//		new() { bookıd = 1 }, // var olan kitap ile yazarı ilişkilendirerek ekleme
+//		new() { book = new() { bookname = "b kitap" } // yeni kitap ile yazarı ilişkilendirerek ekleme
 //		}
 //	};
 
@@ -222,27 +222,27 @@ class ApplicationDbContext : DbContext
 #endregion
 
 
-
-
-
-
-class ApplicationDBContext : DbContext
-{
-	public DbSet<Book> Books { get; set; }
-	public DbSet<Author> Authors { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-		base.OnConfiguring(optionsBuilder);
-	}
-
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<BookAuthor>().HasKey(ba => new { ba.AuthorId, ba.BookId });
-		modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Book).WithMany(b => b.BookAuthors).HasForeignKey(ba => ba.BookId);
-		modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Author).WithMany(a => a.BookAuthors).HasForeignKey(ba => ba.AuthorId);
-		base.OnModelCreating(modelBuilder);
-	}
-}
 #endregion
+
+
+
+//class ApplicationDBContext : DbContext
+//{
+//	public DbSet<Book> Books { get; set; }
+//	public DbSet<Author> Authors { get; set; }
+//	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//	{
+//		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+//		base.OnConfiguring(optionsBuilder);
+//	}
+
+//	protected override void OnModelCreating(ModelBuilder modelBuilder)
+//	{
+//		modelBuilder.Entity<BookAuthor>().HasKey(ba => new { ba.AuthorId, ba.BookId });
+//		modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Book).WithMany(b => b.BookAuthors).HasForeignKey(ba => ba.BookId);
+//		modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Author).WithMany(a => a.BookAuthors).HasForeignKey(ba => ba.AuthorId);
+//		base.OnModelCreating(modelBuilder);
+//	}
+//}
+
 

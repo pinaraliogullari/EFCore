@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneToMany.RelationShip", "O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyToMany.RelationShip", "ManyToMany.RelationShip\ManyToMany.RelationShip.csproj", "{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saving.RelatedData", "Saving.RelatedData\Saving.RelatedData.csproj", "{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Saving.RelatedData", "Saving.RelatedData\Saving.RelatedData.csproj", "{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updating.RelatedData", "Updating.RelatedData\Updating.RelatedData.csproj", "{0DC517B9-1570-45A6-AEC0-D8531D82F535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC517B9-1570-45A6-AEC0-D8531D82F535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC517B9-1570-45A6-AEC0-D8531D82F535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC517B9-1570-45A6-AEC0-D8531D82F535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC517B9-1570-45A6-AEC0-D8531D82F535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
