@@ -387,7 +387,7 @@ class ApplicationDbContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer("Server=localhost, 1433;Database=ApplicationDb;User ID=SA;Password=1q2w3e4r+!");
+		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
 	}
 }
 
