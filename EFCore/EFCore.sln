@@ -3,25 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persisting.Data", "Persisting.Data\Persisting.Data.csproj", "{21B31F0A-F421-42A5-912F-F0ADAC3B5963}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persisting.Data", "Persisting.Data\Persisting.Data.csproj", "{21B31F0A-F421-42A5-912F-F0ADAC3B5963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persisting.Data.Update", "Persisting.Data.Update\Persisting.Data.Update.csproj", "{EB000992-B212-426C-9B7E-E1C6D0F5CD9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persisting.Data.Update", "Persisting.Data.Update\Persisting.Data.Update.csproj", "{EB000992-B212-426C-9B7E-E1C6D0F5CD9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persisting.Data.Delete", "Persisting.Data.Delete\Persisting.Data.Delete.csproj", "{72F93AA5-F8A8-444A-95C9-4388DAD200D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persisting.Data.Delete", "Persisting.Data.Delete\Persisting.Data.Delete.csproj", "{72F93AA5-F8A8-444A-95C9-4388DAD200D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Querying", "Querying\Querying.csproj", "{51853CB8-4441-424E-8889-5BE6C948F13E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Querying", "Querying\Querying.csproj", "{51853CB8-4441-424E-8889-5BE6C948F13E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeTracker", "ChangeTracker\ChangeTracker.csproj", "{A7F3C14D-A0D0-4431-9DAE-A959DE866A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeTracker", "ChangeTracker\ChangeTracker.csproj", "{A7F3C14D-A0D0-4431-9DAE-A959DE866A22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking", "Tracking\Tracking.csproj", "{37C831EB-4D3A-4842-8D75-07DED886C0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracking", "Tracking\Tracking.csproj", "{37C831EB-4D3A-4842-8D75-07DED886C0A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelationShips", "RelationShips\RelationShips.csproj", "{08636FDF-C8B5-46D4-BB44-F2D626BB6C16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationShips", "RelationShips\RelationShips.csproj", "{08636FDF-C8B5-46D4-BB44-F2D626BB6C16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneToOne.RelationShip", "OneToOne.RelationShip\OneToOne.RelationShip.csproj", "{DA755BFC-CA99-4C3E-A741-4B3E1F9B8B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneToOne.RelationShip", "OneToOne.RelationShip\OneToOne.RelationShip.csproj", "{DA755BFC-CA99-4C3E-A741-4B3E1F9B8B4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneToMany.RelationShip", "OneToMany.RelationShip\OneToMany.RelationShip.csproj", "{BB4D7CB0-D0ED-4F64-B466-7FE0B08B8A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneToMany.RelationShip", "OneToMany.RelationShip\OneToMany.RelationShip.csproj", "{BB4D7CB0-D0ED-4F64-B466-7FE0B08B8A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyToMany.RelationShip", "ManyToMany.RelationShip\ManyToMany.RelationShip.csproj", "{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManyToMany.RelationShip", "ManyToMany.RelationShip\ManyToMany.RelationShip.csproj", "{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saving.RelatedData", "Saving.RelatedData\Saving.RelatedData.csproj", "{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02A74FB6-2A37-41FF-8598-8859FCD6EC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D373C2C-A59C-4B6B-90F0-444F0F5E1439}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
