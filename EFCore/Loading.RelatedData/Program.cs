@@ -5,7 +5,6 @@ using System.Reflection;
 
 ApplicationDbContext context = new();
 
-#region Loafing Related Data
 #region Eager Loading
 //eager loading , generate edilen bir sorguya ilişkisel verilerin parça parça eklenmesini sağlayan ve bunu yaparken iradeli/istekli bir şekilde yapmamızı sağlayan bir yöntemdir. 
 #region Include
@@ -49,16 +48,32 @@ var regions = await context.Regions
 
 //var employees = await context.Employees.IgnoreAutoIncludes().ToListAsync();
 #endregion
-
-
+#region Birbirlerinden Türetilmiş Entity'ler Arasında Include
+#region Cast Operatörü İle Include
+var persons1 = await context.Persons.Include(p => ((Employee)p).Orders).ToListAsync();
+#endregion
+#region as Operatörü İle Include
+var persons2 = await context.Persons.Include(p => (p as Employee).Orders).ToListAsync();
+#endregion
+#region 2. Overload İle Include
+var persons3 = await context.Persons.Include("Orders").ToListAsync();
 #endregion
 #endregion
 
 
+#endregion
+#region Explicit Loading
+
+#endregion
+
+public class Person
+{
+    public int Id { get; set; }
+}
 
 public class Employee
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
     public string? Name { get; set; }
     public string? Surname { get; set; }
     public int Salary { get; set; }
@@ -85,7 +100,8 @@ public class Region
 }
 class ApplicationDbContext:DbContext
 {
-    public DbSet<Employee> Employees { get; set; }
+	public DbSet<Person> Persons { get; set; }
+	public DbSet<Employee> Employees { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Region> Regions { get; set; }
 
@@ -97,7 +113,7 @@ class ApplicationDbContext:DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+		//modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.Entity<Employee>().Navigation(e => e.Region).AutoInclude();
 		base.OnModelCreating(modelBuilder);
 	}
