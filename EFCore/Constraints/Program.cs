@@ -122,5 +122,6 @@ class ApplicationDbContext : DbContext
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+
 	}
 }
