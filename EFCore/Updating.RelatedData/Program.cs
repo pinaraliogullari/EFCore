@@ -19,7 +19,7 @@ ApplicationDbContext context = new();
 //	Name = "Hilmi"
 //};
 
-await context.AddAsync(person);
+/*await context.AddAsync(person);*/
 //await context.AddAsync(person2);
 //await context.SaveChangesAsync();
 #endregion
