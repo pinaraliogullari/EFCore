@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loading.RelatedData", "Load
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplicitLoading", "ExplicitLoading\ExplicitLoading.csproj", "{4499BA2E-EAD4-476C-B857-B3565F8C67EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLoading", "LazyLoading\LazyLoading.csproj", "{27B96A40-332F-4643-95C0-CB69B2F1FEF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{4499BA2E-EAD4-476C-B857-B3565F8C67EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4499BA2E-EAD4-476C-B857-B3565F8C67EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4499BA2E-EAD4-476C-B857-B3565F8C67EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B96A40-332F-4643-95C0-CB69B2F1FEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B96A40-332F-4643-95C0-CB69B2F1FEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B96A40-332F-4643-95C0-CB69B2F1FEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B96A40-332F-4643-95C0-CB69B2F1FEF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
