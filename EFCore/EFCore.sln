@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexes", "Indexes\Indexes.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sequences", "Sequences\Sequences.csproj", "{6C5D0887-E7E0-414C-98C0-EF6758674BC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loading.RelatedData", "Loading.RelatedData\Loading.RelatedData.csproj", "{2B26F980-6FFD-45AA-BFA0-B4521C7EDB71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{6C5D0887-E7E0-414C-98C0-EF6758674BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C5D0887-E7E0-414C-98C0-EF6758674BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C5D0887-E7E0-414C-98C0-EF6758674BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B26F980-6FFD-45AA-BFA0-B4521C7EDB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B26F980-6FFD-45AA-BFA0-B4521C7EDB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B26F980-6FFD-45AA-BFA0-B4521C7EDB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B26F980-6FFD-45AA-BFA0-B4521C7EDB71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
