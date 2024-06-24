@@ -62,9 +62,6 @@ var persons3 = await context.Persons.Include("Orders").ToListAsync();
 
 
 #endregion
-#region Explicit Loading
-
-#endregion
 
 public class Person
 {
