@@ -1,7 +1,5 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System.Reflection;
 
 ApplicationDbContext context = new();
 
@@ -11,9 +9,9 @@ ApplicationDbContext context = new();
 // Eager loading operasyonu yapmamızı sağlayan bir fonksiyondur. 
 //Yani üretilen bir sorguya diğer ilişkisel tabloların dahil edilmesini sağlayan bir işleve sahiptir. 
 //Include ile dilediğimiz kadar tabloyu dahil edebiliriz.
-var employees= await context.Employees
-    .Include(e=>e.Orders)
-    .Include(e=>e.Region)
+var employees = await context.Employees
+    .Include(e => e.Orders)
+    .Include(e => e.Region)
     .ToListAsync();
 #endregion
 #region ThenInclude
@@ -95,23 +93,23 @@ public class Region
 
 
 }
-class ApplicationDbContext:DbContext
+class ApplicationDbContext : DbContext
 {
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Employee> Employees { get; set; }
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Employee> Employees { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Region> Regions { get; set; }
 
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-		base.OnConfiguring(optionsBuilder);
-	}
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+        base.OnConfiguring(optionsBuilder);
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		//modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.Entity<Employee>().Navigation(e => e.Region).AutoInclude();
-		base.OnModelCreating(modelBuilder);
-	}
+        base.OnModelCreating(modelBuilder);
+    }
 }

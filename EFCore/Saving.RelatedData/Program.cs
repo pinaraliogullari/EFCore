@@ -95,15 +95,15 @@ ApplicationDbContext context = new();
 //1. ve 2. yöntemler hiç olmayan verilerin ilişkisel olarak eklenmesini sağlarken , bu  3. yöntem önceden eklenmiş olan bir principal entity verisi ile yeni dependent entitylerin ilişkisel olarak eşleştirilmesini sağlamaktadır. 
 Post post = new()
 {
-	BlogId = 1,
-	Title = "Post 7",
+    BlogId = 1,
+    Title = "Post 7",
 };
 #endregion
 class Blog
 {
     public Blog()
     {
-        Posts= new HashSet<Post>();    // nesne referansı üzerinden veri ekleme yönteminde  nesne referansı üzerinden eriştiğimiz koleksiyonel propertynin kesinlikle boş olmaması gerekir. bu sebeple constructorda koleksiyonel nesne oluşturuyoruz.
+        Posts = new HashSet<Post>();    // nesne referansı üzerinden veri ekleme yönteminde  nesne referansı üzerinden eriştiğimiz koleksiyonel propertynin kesinlikle boş olmaması gerekir. bu sebeple constructorda koleksiyonel nesne oluşturuyoruz.
     }
     public int Id { get; set; }
     public string Name { get; set; }
@@ -111,7 +111,7 @@ class Blog
 }
 class Post
 {
-    public int Id  { get; set; }
+    public int Id { get; set; }
     public string Title { get; set; }
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
@@ -119,20 +119,20 @@ class Post
 }
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Blog> Blogs { get; set; }
-	public DbSet<Post> Posts { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<Post>()
-			.HasOne(p => p.Blog)
-			.WithMany(b => b.Posts)
-			.HasForeignKey(p => p.BlogId);
-	}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Post>()
+            .HasOne(p => p.Blog)
+            .WithMany(b => b.Posts)
+            .HasForeignKey(p => p.BlogId);
+    }
 }
 #endregion
 

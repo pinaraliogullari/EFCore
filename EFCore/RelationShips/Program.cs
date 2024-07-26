@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-Console.WriteLine();
+﻿Console.WriteLine();
 
 #region Relationships(İlişkiler) Terimleri
 #region Principal Entity(Asıl Entity)
@@ -25,18 +24,18 @@ Console.WriteLine();
 
 class Calisan
 {
-	public int Id { get; set; }
-	public string CalisanAdi { get; set; }
-	public int DepartmanId { get; set; }
+    public int Id { get; set; }
+    public string CalisanAdi { get; set; }
+    public int DepartmanId { get; set; }
 
-	public Departman Departman { get; set; }
+    public Departman Departman { get; set; }
 }
 class Departman
 {
-	public int Id { get; set; }
-	public string DepartmanAdi { get; set; }
+    public int Id { get; set; }
+    public string DepartmanAdi { get; set; }
 
-	public List<Calisan> Calisanlar { get; set; }
+    public List<Calisan> Calisanlar { get; set; }
 }
 
 #endregion

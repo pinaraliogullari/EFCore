@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 ApplicationDbContext context = new();
 
 #region Sequence Nedir?
@@ -42,37 +40,37 @@ ApplicationDbContext context = new();
 
 class Employee
 {
-	public int Id { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
-	public int Salary { get; set; }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public int Salary { get; set; }
 }
 class Customer
 {
-	public int Id { get; set; }
-	public string? Name { get; set; }
+    public int Id { get; set; }
+    public string? Name { get; set; }
 }
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Employee> Employees { get; set; }
-	public DbSet<Customer> Customers { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.HasSequence("EC_Sequence")
-			.StartsAt(100)
-			.IncrementsBy(5);
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasSequence("EC_Sequence")
+            .StartsAt(100)
+            .IncrementsBy(5);
 
 
-		modelBuilder.Entity<Employee>()
-			.Property(e => e.Id)
-			.HasDefaultValueSql("NEXT VALUE FOR EC_Sequence");
+        modelBuilder.Entity<Employee>()
+            .Property(e => e.Id)
+            .HasDefaultValueSql("NEXT VALUE FOR EC_Sequence");
 
-		modelBuilder.Entity<Customer>()
-			.Property(c => c.Id)
-			.HasDefaultValueSql("NEXT VALUE FOR EC_Sequence");
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+        modelBuilder.Entity<Customer>()
+            .Property(c => c.Id)
+            .HasDefaultValueSql("NEXT VALUE FOR EC_Sequence");
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

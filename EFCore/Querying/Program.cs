@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
 
 ETicaretContext context = new();
@@ -364,13 +362,13 @@ ETicaretContext context = new();
 #endregion
 #region Query Syntax
 var datas = await (from urun in context.Urunler
-				   group urun by urun.Fiyat
-			into @group
-				   select new
-				   {
-					   Fiyat = @group.Key,
-					   Count = @group.Count()
-				   }).ToListAsync();
+                   group urun by urun.Fiyat
+            into @group
+                   select new
+                   {
+                       Fiyat = @group.Key,
+                       Count = @group.Count()
+                   }).ToListAsync();
 #endregion
 #endregion
 
@@ -393,44 +391,44 @@ datas.ForEach(x =>
 
 public class ETicaretContext : DbContext
 {
-	public DbSet<Urun> Urunler { get; set; }
-	public DbSet<Parca> Parcalar { get; set; }
-	public DbSet<UrunParca> UrunParca { get; set; }
+    public DbSet<Urun> Urunler { get; set; }
+    public DbSet<Parca> Parcalar { get; set; }
+    public DbSet<UrunParca> UrunParca { get; set; }
 
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<UrunParca>().HasKey(up => new { up.UrunId, up.ParcaId });
-	}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<UrunParca>().HasKey(up => new { up.UrunId, up.ParcaId });
+    }
 }
 public class Urun
 {
-	public int Id { get; set; }
-	public string UrunAdi { get; set; }
-	public float Fiyat { get; set; }
+    public int Id { get; set; }
+    public string UrunAdi { get; set; }
+    public float Fiyat { get; set; }
 
-	public ICollection<Parca> Parcalar { get; set; }
+    public ICollection<Parca> Parcalar { get; set; }
 }
 public class Parca
 {
-	public int Id { get; set; }
-	public string ParcaAdi { get; set; }
+    public int Id { get; set; }
+    public string ParcaAdi { get; set; }
 }
 public class UrunParca
 {
-	public int UrunId { get; set; }
-	public int ParcaId { get; set; }
+    public int UrunId { get; set; }
+    public int ParcaId { get; set; }
 
-	public Urun Urun { get; set; }
-	public Parca Parca { get; set; }
+    public Urun Urun { get; set; }
+    public Parca Parca { get; set; }
 }
 
 public class UrunDetay
 {
-	public int Id { get; set; }
-	public float Fiyat { get; set; }
+    public int Id { get; set; }
+    public float Fiyat { get; set; }
 }

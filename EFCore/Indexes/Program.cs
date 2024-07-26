@@ -62,46 +62,46 @@ ApplicationDbContext context = new();
 //[Index(nameof(Name), Name = "name_index")]
 class Employee
 {
-	public int Id { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
-	public int Salary { get; set; }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public int Salary { get; set; }
 }
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Employee> Employees { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		//modelBuilder.Entity<Employee>()
-		//.HasIndex(x => x.Name);
-		//.HasIndex(x => new { x.Name, x.Surname });
-		//.HasIndex(nameof(Employee.Name), nameof(Employee.Surname));
-		//.HasIndex(x => x.Name)
-		//.IsUnique();
+    public DbSet<Employee> Employees { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.Entity<Employee>()
+        //.HasIndex(x => x.Name);
+        //.HasIndex(x => new { x.Name, x.Surname });
+        //.HasIndex(nameof(Employee.Name), nameof(Employee.Surname));
+        //.HasIndex(x => x.Name)
+        //.IsUnique();
 
-		//modelBuilder.Entity<Employee>()
-		//    .HasIndex(x => x.Name)
-		//    .IsDescending();
+        //modelBuilder.Entity<Employee>()
+        //    .HasIndex(x => x.Name)
+        //    .IsDescending();
 
-		//modelBuilder.Entity<Employee>()
-		//    .HasIndex(x => new { x.Name, x.Surname })
-		//    .IsDescending(true, false);
+        //modelBuilder.Entity<Employee>()
+        //    .HasIndex(x => new { x.Name, x.Surname })
+        //    .IsDescending(true, false);
 
-		//modelBuilder.Entity<Employee>()
-		//    .HasIndex(x => x.Name)
-		//    .HasDatabaseName("name_index");
+        //modelBuilder.Entity<Employee>()
+        //    .HasIndex(x => x.Name)
+        //    .HasDatabaseName("name_index");
 
-		//modelBuilder.Entity<Employee>()
-		//    .HasIndex(x => x.Name)
-		//    .HasFilter("[NAME] IS NOT NULL");
+        //modelBuilder.Entity<Employee>()
+        //    .HasIndex(x => x.Name)
+        //    .HasFilter("[NAME] IS NOT NULL");
 
-		modelBuilder.Entity<Employee>()
-			.HasIndex(x => new { x.Name, x.Surname })
-			.IncludeProperties(x => x.Salary);
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+        modelBuilder.Entity<Employee>()
+            .HasIndex(x => new { x.Name, x.Surname })
+            .IncludeProperties(x => x.Salary);
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

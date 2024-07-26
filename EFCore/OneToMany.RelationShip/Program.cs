@@ -45,18 +45,18 @@ EFCoreTrainingDBContext context = new();
 #region Fluent API
 class Calisan //Dependent Entity
 {
-	public int Id { get; set; }
-	public int DId { get; set; }
-	public string Adi { get; set; }
+    public int Id { get; set; }
+    public int DId { get; set; }
+    public string Adi { get; set; }
 
-	public Departman Departman { get; set; }
+    public Departman Departman { get; set; }
 }
 class Departman
 {
-	public int Id { get; set; }
-	public string DepartmanAdi { get; set; }
+    public int Id { get; set; }
+    public string DepartmanAdi { get; set; }
 
-	public ICollection<Calisan> Calisanlar { get; set; }
+    public ICollection<Calisan> Calisanlar { get; set; }
 }
 
 
@@ -65,19 +65,19 @@ class Departman
 
 class EFCoreTrainingDBContext : DbContext
 {
-	public DbSet<Calisan> Calisanlar { get; set; }
-	public DbSet<Departman> Departmanlar { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Calisan> Calisanlar { get; set; }
+    public DbSet<Departman> Departmanlar { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<Calisan>()
-			.HasOne(c => c.Departman)
-			.WithMany(d => d.Calisanlar)
-			.HasForeignKey(c => c.DId);
-	}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Calisan>()
+            .HasOne(c => c.Departman)
+            .WithMany(d => d.Calisanlar)
+            .HasForeignKey(c => c.DId);
+    }
 }
 

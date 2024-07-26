@@ -23,9 +23,9 @@ ApplicationDbContext context = new();
 
 #region Many to Many İlişkisel Senaryolarda Veri Silme
 Book? book = await context.Books
-	.Include(b=>b.Authors)
-	.FirstOrDefaultAsync(b=>b.Id==1);
-Author? author= book.Authors.FirstOrDefault(a=>a.Id==2);
+    .Include(b => b.Authors)
+    .FirstOrDefaultAsync(b => b.Id == 1);
+Author? author = book.Authors.FirstOrDefault(a => a.Id == 2);
 context.Authors.Remove(author); //bu şekilde  yazar hem yazarlar tablosundan silinir hem de cross tabledaki yazar-kitap ilişkisi silinir.
 book.Authors.Remove(author); //bu şekilde ise sadece cross tabledaki yazar-kitap ilişkisi silinir.yazar, yazarlar tablosundan silinmez.
 await context.SaveChangesAsync();
@@ -109,59 +109,59 @@ await context.SaveChangesAsync();
 
 class Person
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-	public Address Address { get; set; }
+    public Address Address { get; set; }
 }
 class Address
 {
-	public int Id { get; set; }
+    public int Id { get; set; }
     public int PersonId { get; set; }
     public string PersonAddress { get; set; }
 
-	public Person Person { get; set; }
+    public Person Person { get; set; }
 }
 class Blog
 {
-	public Blog()
-	{
-		Posts = new HashSet<Post>();
-	}
-	public int Id { get; set; }
-	public string Name { get; set; }
+    public Blog()
+    {
+        Posts = new HashSet<Post>();
+    }
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-	public ICollection<Post> Posts { get; set; }
+    public ICollection<Post> Posts { get; set; }
 }
 class Post
 {
-	public int Id { get; set; }
-	public int? BlogId { get; set; }
-	public string Title { get; set; }
+    public int Id { get; set; }
+    public int? BlogId { get; set; }
+    public string Title { get; set; }
 
-	public Blog Blog { get; set; }
+    public Blog Blog { get; set; }
 }
 class Book
 {
-	public Book()
-	{
-		Authors = new HashSet<Author>();
-	}
-	public int Id { get; set; }
-	public string BookName { get; set; }
+    public Book()
+    {
+        Authors = new HashSet<Author>();
+    }
+    public int Id { get; set; }
+    public string BookName { get; set; }
 
-	public ICollection<Author> Authors { get; set; }
+    public ICollection<Author> Authors { get; set; }
 }
 class Author
 {
-	public Author()
-	{
-		Books = new HashSet<Book>();
-	}
-	public int Id { get; set; }
-	public string AuthorName { get; set; }
+    public Author()
+    {
+        Books = new HashSet<Book>();
+    }
+    public int Id { get; set; }
+    public string AuthorName { get; set; }
 
-	public ICollection<Book> Books { get; set; }
+    public ICollection<Book> Books { get; set; }
 }
 
 class BookAuthor
@@ -174,44 +174,44 @@ class BookAuthor
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Address> Addresses { get; set; }
-	public DbSet<Post> Posts { get; set; }
-	public DbSet<Blog> Blogs { get; set; }
-	public DbSet<Book> Books { get; set; }
-	public DbSet<Author> Authors { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<Address>()
-			.HasOne(a => a.Person)
-			.WithOne(p => p.Address)
-			.HasForeignKey<Address>(a => a.Id)
-			.OnDelete(DeleteBehavior.Restrict);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Address>()
+            .HasOne(a => a.Person)
+            .WithOne(p => p.Address)
+            .HasForeignKey<Address>(a => a.Id)
+            .OnDelete(DeleteBehavior.Restrict);
 
-		modelBuilder.Entity<Post>()
-			.HasOne(p => p.Blog)
-			.WithMany(b => b.Posts)
-			.IsRequired(false)
-			.OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Post>()
+            .HasOne(p => p.Blog)
+            .WithMany(b => b.Posts)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
 
-		modelBuilder.Entity<Author>()
-			.HasMany(a => a.Books)
-			.WithMany(b => b.Authors);
+        modelBuilder.Entity<Author>()
+            .HasMany(a => a.Books)
+            .WithMany(b => b.Authors);
 
-		//modelBuilder.Entity<BookAuthor>()
-		//	.HasOne(ba => ba.Author)
-		//	.WithMany(a => a.BookAuthors)
-		//	.HasForeignKey(ba => ba.AuthorId)
-		//	.OnDelete(DeleteBehavior.Cascade);
-		//modelBuilder.Entity<BookAuthor>()
-		//.HasOne(ba => ba.Book)
-		//.WithMany(b => b.BookAuthors)
-		//.HasForeignKey(ba => ba.BookId)
-		//.OnDelete(DeleteBehavior.Cascade);
-	}
+        //modelBuilder.Entity<BookAuthor>()
+        //	.HasOne(ba => ba.Author)
+        //	.WithMany(a => a.BookAuthors)
+        //	.HasForeignKey(ba => ba.AuthorId)
+        //	.OnDelete(DeleteBehavior.Cascade);
+        //modelBuilder.Entity<BookAuthor>()
+        //.HasOne(ba => ba.Book)
+        //.WithMany(b => b.BookAuthors)
+        //.HasForeignKey(ba => ba.BookId)
+        //.OnDelete(DeleteBehavior.Cascade);
+    }
 }

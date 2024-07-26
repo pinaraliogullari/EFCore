@@ -55,42 +55,42 @@ Console.WriteLine();
 
 public class Employee
 {
-	public int Id { get; set; }
-	public int RegionId { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
-	public int Salary { get; set; }
+    public int Id { get; set; }
+    public int RegionId { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public int Salary { get; set; }
 
-	public List<Order> Orders { get; set; }
-	public Region Region { get; set; }
+    public List<Order> Orders { get; set; }
+    public Region Region { get; set; }
 }
 public class Region
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
-	public ICollection<Employee> Employees { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public ICollection<Employee> Employees { get; set; }
 }
 public class Order
 {
-	public int Id { get; set; }
-	public int EmployeeId { get; set; }
-	public DateTime OrderDate { get; set; }
+    public int Id { get; set; }
+    public int EmployeeId { get; set; }
+    public DateTime OrderDate { get; set; }
 
-	public Employee Employee { get; set; }
+    public Employee Employee { get; set; }
 }
 
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Employee> Employees { get; set; }
-	public DbSet<Order> Orders { get; set; }
-	public DbSet<Region> Regions { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Region> Regions { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

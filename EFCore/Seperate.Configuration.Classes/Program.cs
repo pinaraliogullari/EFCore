@@ -25,35 +25,35 @@ Console.WriteLine();
 
 class Order
 {
-	public int OrderId { get; set; }
-	public string Description { get; set; }
-	public DateTime OrderDate { get; set; }
+    public int OrderId { get; set; }
+    public string Description { get; set; }
+    public DateTime OrderDate { get; set; }
 }
 
 class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
-	public void Configure(EntityTypeBuilder<Order> builder)
-	{
-		builder.HasKey(x => x.OrderId);
-		builder.Property(p => p.Description)
-			.HasMaxLength(13);
-		builder.Property(p => p.OrderDate)
-			.HasDefaultValueSql("GETDATE()");
-	}
+    public void Configure(EntityTypeBuilder<Order> builder)
+    {
+        builder.HasKey(x => x.OrderId);
+        builder.Property(p => p.Description)
+            .HasMaxLength(13);
+        builder.Property(p => p.OrderDate)
+            .HasDefaultValueSql("GETDATE()");
+    }
 }
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Order> Orders { get; set; }
+    public DbSet<Order> Orders { get; set; }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		//modelBuilder.ApplyConfiguration(new OrderConfiguration());      
-		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.ApplyConfiguration(new OrderConfiguration());      
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

@@ -58,57 +58,57 @@ Console.Read();
 //Composite PK Haskey metodu ile kurulmalı!
 class Kitap
 {
-	public int Id { get; set; }
-	public string KitapAdi { get; set; }
+    public int Id { get; set; }
+    public string KitapAdi { get; set; }
 
-	public ICollection<KitapYazar> Yazarlar { get; set; }
+    public ICollection<KitapYazar> Yazarlar { get; set; }
 }
 //Cross Table
 class KitapYazar
 {
-	public int KitapId { get; set; }
-	public int YazarId { get; set; }
+    public int KitapId { get; set; }
+    public int YazarId { get; set; }
 
-	public Kitap Kitap { get; set; }
-	public Yazar Yazar { get; set; }
+    public Kitap Kitap { get; set; }
+    public Yazar Yazar { get; set; }
 }
 class Yazar
 {
-	public int Id { get; set; }
-	public string YazarAdi { get; set; }
+    public int Id { get; set; }
+    public string YazarAdi { get; set; }
 
-	public ICollection<KitapYazar> Kitaplar { get; set; }
+    public ICollection<KitapYazar> Kitaplar { get; set; }
 }
 #endregion
 
 class EFCoreTrainingDBContext : DbContext
 {
-	public DbSet<Kitap> Kitaplar { get; set; }
-	public DbSet<Yazar> Yazarlar { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
-	//Data Annotations
-	//protected override void OnModelCreating(ModelBuilder modelBuilder)
-	//{
-	//    modelBuilder.Entity<KitapYazar>()
-	//        .HasKey(ky => new { ky.KId, ky.YId });
-	//}
+    public DbSet<Kitap> Kitaplar { get; set; }
+    public DbSet<Yazar> Yazarlar { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
+    //Data Annotations
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+    //    modelBuilder.Entity<KitapYazar>()
+    //        .HasKey(ky => new { ky.KId, ky.YId });
+    //}
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<KitapYazar>()
-			.HasKey(ky => new { ky.KitapId, ky.YazarId });
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<KitapYazar>()
+            .HasKey(ky => new { ky.KitapId, ky.YazarId });
 
-		modelBuilder.Entity<KitapYazar>()
-			.HasOne(ky => ky.Kitap)
-			.WithMany(k => k.Yazarlar)
-			.HasForeignKey(ky => ky.KitapId);
+        modelBuilder.Entity<KitapYazar>()
+            .HasOne(ky => ky.Kitap)
+            .WithMany(k => k.Yazarlar)
+            .HasForeignKey(ky => ky.KitapId);
 
-		modelBuilder.Entity<KitapYazar>()
-			.HasOne(ky => ky.Yazar)
-			.WithMany(y => y.Kitaplar)
-			.HasForeignKey(ky => ky.YazarId);
-	}
+        modelBuilder.Entity<KitapYazar>()
+            .HasOne(ky => ky.Yazar)
+            .WithMany(y => y.Kitaplar)
+            .HasForeignKey(ky => ky.YazarId);
+    }
 }

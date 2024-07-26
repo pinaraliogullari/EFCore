@@ -53,26 +53,26 @@ Console.WriteLine();
 #region Proxy İle Lazy Loading
 public class Employee
 {
-	public int Id { get; set; }
-	public int RegionId { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
-	public int Salary { get; set; }
-	public virtual List<Order> Orders { get; set; }
-	public virtual Region Region { get; set; }
+    public int Id { get; set; }
+    public int RegionId { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public int Salary { get; set; }
+    public virtual List<Order> Orders { get; set; }
+    public virtual Region Region { get; set; }
 }
 public class Region
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
-	public virtual ICollection<Employee> Employees { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<Employee> Employees { get; set; }
 }
 public class Order
 {
-	public int Id { get; set; }
-	public int EmployeeId { get; set; }
-	public DateTime OrderDate { get; set; }
-	public virtual Employee Employee { get; set; }
+    public int Id { get; set; }
+    public int EmployeeId { get; set; }
+    public DateTime OrderDate { get; set; }
+    public virtual Employee Employee { get; set; }
 }
 #endregion
 #region ILazyLoader Interface'i İle Lazy Loading
@@ -174,17 +174,17 @@ public class Order
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Employee> Employees { get; set; }
-	public DbSet<Order> Orders { get; set; }
-	public DbSet<Region> Regions { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Region> Regions { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
 
-		//optionsBuilder.UseLazyLoadingProxies();
-	}
+        //optionsBuilder.UseLazyLoadingProxies();
+    }
 }

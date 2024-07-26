@@ -71,57 +71,57 @@ ApplicationDbContext context = new();
 //[Index(nameof(Blog.Url), IsUnique = true)]
 class Blog
 {
-	public int Id { get; set; }
-	public string BlogName { get; set; }
-	public string Url { get; set; }
+    public int Id { get; set; }
+    public string BlogName { get; set; }
+    public string Url { get; set; }
 
-	public ICollection<Post> Posts { get; set; }
+    public ICollection<Post> Posts { get; set; }
 }
 class Post
 {
-	public int Id { get; set; }
-	//public int BlogId { get; set; }
-	public string Title { get; set; }
-	public string BlogUrl { get; set; }
-	public int A { get; set; }
-	public int B { get; set; }
+    public int Id { get; set; }
+    //public int BlogId { get; set; }
+    public string Title { get; set; }
+    public string BlogUrl { get; set; }
+    public int A { get; set; }
+    public int B { get; set; }
 
-	public Blog Blog { get; set; }
+    public Blog Blog { get; set; }
 }
 
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Blog> Blogs { get; set; }
-	public DbSet<Post> Posts { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		//modelBuilder.Entity<Blog>()
-		//    .HasKey(b => b.Id)
-		//    .HasName("ornek");
-		//modelBuilder.Entity<Blog>()
-		//    .HasAlternateKey(b => new { b.Url, b.BlogName });
-		//modelBuilder.Entity<Blog>()
-		//    .Property<int>("BlogForeignKeyId");
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.Entity<Blog>()
+        //    .HasKey(b => b.Id)
+        //    .HasName("ornek");
+        //modelBuilder.Entity<Blog>()
+        //    .HasAlternateKey(b => new { b.Url, b.BlogName });
+        //modelBuilder.Entity<Blog>()
+        //    .Property<int>("BlogForeignKeyId");
 
-		//modelBuilder.Entity<Blog>()
-		//    .HasMany(b => b.Posts)
-		//    .WithOne(b => b.Blog)
-		//    .HasForeignKey("BlogForeignKeyId")
-		//    .HasConstraintName("ornekforeignkey");
+        //modelBuilder.Entity<Blog>()
+        //    .HasMany(b => b.Posts)
+        //    .WithOne(b => b.Blog)
+        //    .HasForeignKey("BlogForeignKeyId")
+        //    .HasConstraintName("ornekforeignkey");
 
-		//modelBuilder.Entity<Blog>()
-		//    .HasIndex(b => b.Url)
-		//    .IsUnique();
-		//modelBuilder.Entity<Blog>()
-		//    .HasAlternateKey(b => b.Url);
+        //modelBuilder.Entity<Blog>()
+        //    .HasIndex(b => b.Url)
+        //    .IsUnique();
+        //modelBuilder.Entity<Blog>()
+        //    .HasAlternateKey(b => b.Url);
 
-		modelBuilder.Entity<Post>()
-			.HasCheckConstraint("a_b_check_const", "[A] > [B]");
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+        modelBuilder.Entity<Post>()
+            .HasCheckConstraint("a_b_check_const", "[A] > [B]");
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
 
-	}
+    }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 ApplicationDbContext context = new();
 
@@ -49,38 +48,38 @@ ApplicationDbContext context = new();
 
 abstract class Person
 {
-	public int Id { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
 }
 class Employee : Person
 {
-	public string? Department { get; set; }
+    public string? Department { get; set; }
 }
 class Customer : Person
 {
-	public string? CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 }
 class Technician : Employee
 {
-	public string? Branch { get; set; }
+    public string? Branch { get; set; }
 }
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Employee> Employees { get; set; }
-	public DbSet<Customer> Customers { get; set; }
-	public DbSet<Technician> Technicians { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<Person>().ToTable("Persons");
-		modelBuilder.Entity<Employee>().ToTable("Employees");
-		modelBuilder.Entity<Customer>().ToTable("Customers");
-		modelBuilder.Entity<Technician>().ToTable("Technicians");
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Technician> Technicians { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Person>().ToTable("Persons");
+        modelBuilder.Entity<Employee>().ToTable("Employees");
+        modelBuilder.Entity<Customer>().ToTable("Customers");
+        modelBuilder.Entity<Technician>().ToTable("Technicians");
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

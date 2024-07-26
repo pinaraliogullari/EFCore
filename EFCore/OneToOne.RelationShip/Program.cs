@@ -48,38 +48,38 @@ ESirketDbContext context = new();
 //Fleunt API yönteminde entity'ler arasındaki ilişki context sınıfı içerisinde OnModelCreating fonksiyonun override edilerek metotlar aracılığıyla tasarlanması gerekmektedir. Yani tüm sorumluluk bu fonksiyon içerisindeki çalışmalardadır.
 class Calisan
 {
-	public int Id { get; set; }
-	public string Adi { get; set; }
+    public int Id { get; set; }
+    public string Adi { get; set; }
 
-	public CalisanAdresi CalisanAdresi { get; set; }
+    public CalisanAdresi CalisanAdresi { get; set; }
 }
 class CalisanAdresi
 {
-	public int Id { get; set; }
-	public string Adres { get; set; }
+    public int Id { get; set; }
+    public string Adres { get; set; }
 
-	public Calisan Calisan { get; set; }
+    public Calisan Calisan { get; set; }
 }
 #endregion
 class ESirketDbContext : DbContext
 {
-	public DbSet<Calisan> Calisanlar { get; set; }
-	public DbSet<CalisanAdresi> CalisanAdresleri { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
-	//Model'ların(entity) veritabanında generate edilecek yapıları bu fonksiyonda içerisinde konfigüre edilir
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<CalisanAdresi>()
-			.HasKey(c => c.Id);
+    public DbSet<Calisan> Calisanlar { get; set; }
+    public DbSet<CalisanAdresi> CalisanAdresleri { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
+    //Model'ların(entity) veritabanında generate edilecek yapıları bu fonksiyonda içerisinde konfigüre edilir
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CalisanAdresi>()
+            .HasKey(c => c.Id);
 
-		modelBuilder.Entity<Calisan>()
-			 .HasOne(c => c.CalisanAdresi)
-			 .WithOne(c => c.Calisan)
-			 .HasForeignKey<CalisanAdresi>(c => c.Id);
-	}
+        modelBuilder.Entity<Calisan>()
+             .HasOne(c => c.CalisanAdresi)
+             .WithOne(c => c.Calisan)
+             .HasForeignKey<CalisanAdresi>(c => c.Id);
+    }
 }
 
 

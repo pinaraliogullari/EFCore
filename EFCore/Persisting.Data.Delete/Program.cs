@@ -40,16 +40,16 @@ Console.WriteLine();
 
 public class ETicaretContext : DbContext
 {
-	public DbSet<Urun> Urunler { get; set; }
+    public DbSet<Urun> Urunler { get; set; }
 
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }
 public class Urun
 {
-	public int Id { get; set; }
-	public string UrunAdi { get; set; }
-	public float Fiyat { get; set; }
+    public int Id { get; set; }
+    public string UrunAdi { get; set; }
+    public float Fiyat { get; set; }
 }

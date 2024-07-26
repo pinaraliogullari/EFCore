@@ -70,42 +70,42 @@ ApplicationDbContext context = new();
 #endregion
 abstract class Person
 {
-	public int Id { get; set; }
-	public string? Name { get; set; }
-	public string? Surname { get; set; }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
 }
 class Employee : Person
 {
-	public string? Department { get; set; }
+    public string? Department { get; set; }
 }
 class Customer : Person
 {
-	public string? CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 }
 class Technician : Employee
 {
-	public string? Branch { get; set; }
+    public string? Branch { get; set; }
 }
 
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Employee> Employees { get; set; }
-	public DbSet<Customer> Customers { get; set; }
-	public DbSet<Technician> Technicians { get; set; }
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		//modelBuilder.Entity<Person>().HasDiscriminator<string>("ayirici");
-		//discriminator kolonunun değerlerini değiştirme
-		//modelBuilder.Entity<Person>()
-		//	    .HasDiscriminator<string>("ayirici")
-		//		.HasValue<Person>("A")
-		//      .HasValue<Employee>("B")
-		//	    .HasValue<Customer>("C")
-		//	    .HasValue<Technician>("D");
-	}
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Technician> Technicians { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.Entity<Person>().HasDiscriminator<string>("ayirici");
+        //discriminator kolonunun değerlerini değiştirme
+        //modelBuilder.Entity<Person>()
+        //	    .HasDiscriminator<string>("ayirici")
+        //		.HasValue<Person>("A")
+        //      .HasValue<Employee>("B")
+        //	    .HasValue<Customer>("C")
+        //	    .HasValue<Technician>("D");
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=ApplicationDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }

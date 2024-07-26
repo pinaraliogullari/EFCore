@@ -170,77 +170,77 @@ ApplicationDbContext context = new();
 
 class Person
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-	public Address Address { get; set; }
+    public Address Address { get; set; }
 }
 class Address
 {
-	public int Id { get; set; }
-	public string PersonAddress { get; set; }
+    public int Id { get; set; }
+    public string PersonAddress { get; set; }
 
-	public Person Person { get; set; }
+    public Person Person { get; set; }
 }
 class Blog
 {
-	public Blog()
-	{
-		Posts = new HashSet<Post>();
-	}
-	public int Id { get; set; }
-	public string Name { get; set; }
+    public Blog()
+    {
+        Posts = new HashSet<Post>();
+    }
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-	public ICollection<Post> Posts { get; set; }
+    public ICollection<Post> Posts { get; set; }
 }
 class Post
 {
-	public int Id { get; set; }
-	public int BlogId { get; set; }
-	public string Title { get; set; }
+    public int Id { get; set; }
+    public int BlogId { get; set; }
+    public string Title { get; set; }
 
-	public Blog Blog { get; set; }
+    public Blog Blog { get; set; }
 }
 class Book
 {
-	public Book()
-	{
-		Authors = new HashSet<Author>();
-	}
-	public int Id { get; set; }
-	public string BookName { get; set; }
+    public Book()
+    {
+        Authors = new HashSet<Author>();
+    }
+    public int Id { get; set; }
+    public string BookName { get; set; }
 
-	public ICollection<Author> Authors { get; set; }
+    public ICollection<Author> Authors { get; set; }
 }
 class Author
 {
-	public Author()
-	{
-		Books = new HashSet<Book>();
-	}
-	public int Id { get; set; }
-	public string AuthorName { get; set; }
+    public Author()
+    {
+        Books = new HashSet<Book>();
+    }
+    public int Id { get; set; }
+    public string AuthorName { get; set; }
 
-	public ICollection<Book> Books { get; set; }
+    public ICollection<Book> Books { get; set; }
 }
 class ApplicationDbContext : DbContext
 {
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Address> Addresses { get; set; }
-	public DbSet<Post> Posts { get; set; }
-	public DbSet<Blog> Blogs { get; set; }
-	public DbSet<Book> Books { get; set; }
-	public DbSet<Author> Authors { get; set; }
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		modelBuilder.Entity<Address>()
-			.HasOne(a => a.Person)
-			.WithOne(p => p.Address)
-			.HasForeignKey<Address>(a => a.Id);
-	}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Address>()
+            .HasOne(a => a.Person)
+            .WithOne(p => p.Address)
+            .HasForeignKey<Address>(a => a.Id);
+    }
 }

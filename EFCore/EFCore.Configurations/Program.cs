@@ -162,252 +162,252 @@ ApplicationDbContext context = new();
 //[Table("Kisiler")]
 class Person
 {
-	//[Key]
-	public int Id { get; set; }
-	//public int Id2 { get; set; }
-	//[ForeignKey(nameof(Department))]
-	//public int DId { get; set; }
-	//[Column("Adi", TypeName = "metin", Order = 7)]
-	public int DepartmentId { get; set; }
-	public string _name;
-	public string Name { get => _name; set => _name = value; }
-	//[Required()]
-	//[MaxLength(13)]
-	//[StringLength(14)]
-	[Unicode]
-	public string? Surname { get; set; }
-	//[Precision(5, 3)]
-	public decimal Salary { get; set; }
-	//Yazılımsal amaçla oluşturduğum bir property
-	//[NotMapped]
-	//public string Laylaylom { get; set; }
+    //[Key]
+    public int Id { get; set; }
+    //public int Id2 { get; set; }
+    //[ForeignKey(nameof(Department))]
+    //public int DId { get; set; }
+    //[Column("Adi", TypeName = "metin", Order = 7)]
+    public int DepartmentId { get; set; }
+    public string _name;
+    public string Name { get => _name; set => _name = value; }
+    //[Required()]
+    //[MaxLength(13)]
+    //[StringLength(14)]
+    [Unicode]
+    public string? Surname { get; set; }
+    //[Precision(5, 3)]
+    public decimal Salary { get; set; }
+    //Yazılımsal amaçla oluşturduğum bir property
+    //[NotMapped]
+    //public string Laylaylom { get; set; }
 
-	[Timestamp]
-	//[Comment("Bu şuna yaramaktadır...")]
-	public byte[] RowVersion { get; set; }
+    [Timestamp]
+    //[Comment("Bu şuna yaramaktadır...")]
+    public byte[] RowVersion { get; set; }
 
-	//[ConcurrencyCheck]
-	//public int ConcurrencyCheck { get; set; }
+    //[ConcurrencyCheck]
+    //public int ConcurrencyCheck { get; set; }
 
-	public DateTime CreatedDate { get; set; }
-	public Department Department { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public Department Department { get; set; }
 }
 class Department
 {
-	public int Id { get; set; }
-	public string Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
 
-	public ICollection<Person> Persons { get; set; }
+    public ICollection<Person> Persons { get; set; }
 }
 class Example
 {
 
-	public int X { get; set; }
-	public int Y { get; set; }
-	public int Computed { get; set; }
+    public int X { get; set; }
+    public int Y { get; set; }
+    public int Computed { get; set; }
 }
 class Entity
 {
-	public int Id { get; set; }
-	public string X { get; set; }
+    public int Id { get; set; }
+    public string X { get; set; }
 }
 class A : Entity
 {
-	public int Y { get; set; }
+    public int Y { get; set; }
 }
 class B : Entity
 {
-	public int Z { get; set; }
+    public int Z { get; set; }
 }
 class ApplicationDbContext : DbContext
 {
-	//public DbSet<Entity> Entities { get; set; }
-	//public DbSet<A> As { get; set; }
-	//public DbSet<B> Bs { get; set; }
+    //public DbSet<Entity> Entities { get; set; }
+    //public DbSet<A> As { get; set; }
+    //public DbSet<B> Bs { get; set; }
 
-	public DbSet<Person> Persons { get; set; }
-	public DbSet<Department> Departments { get; set; }
-	//public DbSet<Flight> Flights { get; set; }
-	//public DbSet<Airport> Airports { get; set; }
-	public DbSet<Example> Examples { get; set; }
+    public DbSet<Person> Persons { get; set; }
+    public DbSet<Department> Departments { get; set; }
+    //public DbSet<Flight> Flights { get; set; }
+    //public DbSet<Airport> Airports { get; set; }
+    public DbSet<Example> Examples { get; set; }
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		#region GetEntityTypes
-		//var entities = modelBuilder.Model.GetEntityTypes();
-		//foreach (var entity in entities)
-		//{
-		//    Console.WriteLine(entity.Name);
-		//}
-		#endregion
-		#region ToTable
-		//modelBuilder.Entity<Person>().ToTable("aksdmkasmdk");
-		#endregion
-		#region Column
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Name)
-		//    .HasColumnName("Adi")
-		//    .HasColumnType("asldalsd")
-		//    .HasColumnOrder(7);
-		#endregion
-		#region ForeignKey
-		//modelBuilder.Entity<Person>()
-		//    .HasOne(p => p.Department)
-		//    .WithMany(d => d.Persons)
-		//    .HasForeignKey(p => p.DId);
-		#endregion
-		#region Ignore
-		//modelBuilder.Entity<Person>()
-		//    .Ignore(p => p.Laylaylom);
-		#endregion
-		#region Primary Key
-		//modelBuilder.Entity<Person>()
-		//    .HasKey(p => p.Id);
-		#endregion
-		#region IsRowVersion
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.RowVersion)
-		//    .IsRowVersion();
-		#endregion
-		#region Required
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Surname).IsRequired();
-		#endregion
-		#region MaxLength
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Surname)
-		//    .HasMaxLength(13);
-		#endregion
-		#region Precision
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Salary)
-		//    .HasPrecision(5, 3);
-		#endregion
-		#region Unicode
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Surname)
-		//    .IsUnicode();
-		#endregion
-		#region Comment
-		//modelBuilder.Entity<Person>()
-		//        .HasComment("Bu tablo şuna yaramaktadır...")
-		//    .Property(p => p.Surname)
-		//        .HasComment("Bu kolon şuna yaramaktadır.");
-		#endregion
-		#region ConcurrencyCheck
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.ConcurrencyCheck)
-		//    .IsConcurrencyToken();
-		#endregion
-		#region CompositeKey
-		//modelBuilder.Entity<Person>().HasKey("Id", "Id2");
-		//modelBuilder.Entity<Person>().HasKey(p => new { p.Id, p.Id2 });
-		#endregion
-		#region HasDefaultSchema
-		//modelBuilder.HasDefaultSchema("ahmet");
-		#endregion
-		#region Property
-		#region HasDefaultValue
-		//modelBuilder.Entity<Person>()
-		// .Property(p => p.Salary)
-		// .HasDefaultValue(100);
-		#endregion
-		#region HasDefaultValueSql
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.CreatedDate)
-		//    .HasDefaultValueSql("GETDATE()");
-		#endregion
-		#endregion
-		#region HasComputedColumnSql
-		//modelBuilder.Entity<Example>()
-		//    .Property(p => p.Computed)
-		//    .HasComputedColumnSql("[X] + [Y]");
-		#endregion
-		#region HasConstraintName
-		//modelBuilder.Entity<Person>()
-		//    .HasOne(p => p.Department)
-		//    .WithMany(d => d.Persons)
-		//    .HasForeignKey(p => p.DepartmentId)
-		//    .HasConstraintName("ahmet");
-		#endregion
-		#region HasData
-		//modelBuilder.Entity<Department>().HasData(
-		//    new Department()
-		//    {
-		//        Name = "asd",
-		//        Id = 1
-		//    });
-		//modelBuilder.Entity<Person>().HasData(
-		//    new Person
-		//    {
-		//        Id = 1,
-		//        DepartmentId = 1,
-		//        Name = "ahmet",
-		//        Surname = "filanca",
-		//        Salary = 100,
-		//        CreatedDate = DateTime.Now
-		//    },
-		//    new Person
-		//    {
-		//        Id = 2,
-		//        DepartmentId = 1,
-		//        Name = "mehmet",
-		//        Surname = "filanca",
-		//        Salary = 200,
-		//        CreatedDate = DateTime.Now
-		//    }
-		//    );
-		#endregion
-		#region HasDiscriminator
-		//modelBuilder.Entity<Entity>()
-		//    .HasDiscriminator<int>("Ayirici")
-		//    .HasValue<A>(1)
-		//    .HasValue<B>(2)
-		//    .HasValue<Entity>(3);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        #region GetEntityTypes
+        //var entities = modelBuilder.Model.GetEntityTypes();
+        //foreach (var entity in entities)
+        //{
+        //    Console.WriteLine(entity.Name);
+        //}
+        #endregion
+        #region ToTable
+        //modelBuilder.Entity<Person>().ToTable("aksdmkasmdk");
+        #endregion
+        #region Column
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Name)
+        //    .HasColumnName("Adi")
+        //    .HasColumnType("asldalsd")
+        //    .HasColumnOrder(7);
+        #endregion
+        #region ForeignKey
+        //modelBuilder.Entity<Person>()
+        //    .HasOne(p => p.Department)
+        //    .WithMany(d => d.Persons)
+        //    .HasForeignKey(p => p.DId);
+        #endregion
+        #region Ignore
+        //modelBuilder.Entity<Person>()
+        //    .Ignore(p => p.Laylaylom);
+        #endregion
+        #region Primary Key
+        //modelBuilder.Entity<Person>()
+        //    .HasKey(p => p.Id);
+        #endregion
+        #region IsRowVersion
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.RowVersion)
+        //    .IsRowVersion();
+        #endregion
+        #region Required
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Surname).IsRequired();
+        #endregion
+        #region MaxLength
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Surname)
+        //    .HasMaxLength(13);
+        #endregion
+        #region Precision
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Salary)
+        //    .HasPrecision(5, 3);
+        #endregion
+        #region Unicode
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Surname)
+        //    .IsUnicode();
+        #endregion
+        #region Comment
+        //modelBuilder.Entity<Person>()
+        //        .HasComment("Bu tablo şuna yaramaktadır...")
+        //    .Property(p => p.Surname)
+        //        .HasComment("Bu kolon şuna yaramaktadır.");
+        #endregion
+        #region ConcurrencyCheck
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.ConcurrencyCheck)
+        //    .IsConcurrencyToken();
+        #endregion
+        #region CompositeKey
+        //modelBuilder.Entity<Person>().HasKey("Id", "Id2");
+        //modelBuilder.Entity<Person>().HasKey(p => new { p.Id, p.Id2 });
+        #endregion
+        #region HasDefaultSchema
+        //modelBuilder.HasDefaultSchema("ahmet");
+        #endregion
+        #region Property
+        #region HasDefaultValue
+        //modelBuilder.Entity<Person>()
+        // .Property(p => p.Salary)
+        // .HasDefaultValue(100);
+        #endregion
+        #region HasDefaultValueSql
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.CreatedDate)
+        //    .HasDefaultValueSql("GETDATE()");
+        #endregion
+        #endregion
+        #region HasComputedColumnSql
+        //modelBuilder.Entity<Example>()
+        //    .Property(p => p.Computed)
+        //    .HasComputedColumnSql("[X] + [Y]");
+        #endregion
+        #region HasConstraintName
+        //modelBuilder.Entity<Person>()
+        //    .HasOne(p => p.Department)
+        //    .WithMany(d => d.Persons)
+        //    .HasForeignKey(p => p.DepartmentId)
+        //    .HasConstraintName("ahmet");
+        #endregion
+        #region HasData
+        //modelBuilder.Entity<Department>().HasData(
+        //    new Department()
+        //    {
+        //        Name = "asd",
+        //        Id = 1
+        //    });
+        //modelBuilder.Entity<Person>().HasData(
+        //    new Person
+        //    {
+        //        Id = 1,
+        //        DepartmentId = 1,
+        //        Name = "ahmet",
+        //        Surname = "filanca",
+        //        Salary = 100,
+        //        CreatedDate = DateTime.Now
+        //    },
+        //    new Person
+        //    {
+        //        Id = 2,
+        //        DepartmentId = 1,
+        //        Name = "mehmet",
+        //        Surname = "filanca",
+        //        Salary = 200,
+        //        CreatedDate = DateTime.Now
+        //    }
+        //    );
+        #endregion
+        #region HasDiscriminator
+        //modelBuilder.Entity<Entity>()
+        //    .HasDiscriminator<int>("Ayirici")
+        //    .HasValue<A>(1)
+        //    .HasValue<B>(2)
+        //    .HasValue<Entity>(3);
 
-		#endregion
-		#region HasField
-		//modelBuilder.Entity<Person>()
-		//    .Property(p => p.Name)
-		//    .HasField(nameof(Person._name));
-		#endregion
-		#region HasNoKey
-		//modelBuilder.Entity<Example>()
-		//    .HasNoKey();
-		#endregion
-		#region HasIndex
-		//modelBuilder.Entity<Person>()
-		//    .HasIndex(p => new { p.Name, p.Surname });
-		#endregion
-		#region HasQueryFilter
-		//modelBuilder.Entity<Person>()
-		//    .HasQueryFilter(p => p.CreatedDate.Year == DateTime.Now.Year);
-		#endregion
-	}
+        #endregion
+        #region HasField
+        //modelBuilder.Entity<Person>()
+        //    .Property(p => p.Name)
+        //    .HasField(nameof(Person._name));
+        #endregion
+        #region HasNoKey
+        //modelBuilder.Entity<Example>()
+        //    .HasNoKey();
+        #endregion
+        #region HasIndex
+        //modelBuilder.Entity<Person>()
+        //    .HasIndex(p => new { p.Name, p.Surname });
+        #endregion
+        #region HasQueryFilter
+        //modelBuilder.Entity<Person>()
+        //    .HasQueryFilter(p => p.CreatedDate.Year == DateTime.Now.Year);
+        #endregion
+    }
 
-	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
-	}
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(@"Server=DESKTOP-QE6JDF1\SQLEXPRESS;Database=EFCoreTrainingDB;User Id=sa;Password=1q2w3e;TrustServerCertificate=true");
+    }
 }
 
 public class Flight
 {
-	public int FlightID { get; set; }
-	public int DepartureAirportId { get; set; }
-	public int ArrivalAirportId { get; set; }
-	public string Name { get; set; }
-	public Airport DepartureAirport { get; set; }
-	public Airport ArrivalAirport { get; set; }
+    public int FlightID { get; set; }
+    public int DepartureAirportId { get; set; }
+    public int ArrivalAirportId { get; set; }
+    public string Name { get; set; }
+    public Airport DepartureAirport { get; set; }
+    public Airport ArrivalAirport { get; set; }
 }
 
 public class Airport
 {
-	public int AirportID { get; set; }
-	public string Name { get; set; }
-	[InverseProperty(nameof(Flight.DepartureAirport))]
-	public virtual ICollection<Flight> DepartingFlights { get; set; }
+    public int AirportID { get; set; }
+    public string Name { get; set; }
+    [InverseProperty(nameof(Flight.DepartureAirport))]
+    public virtual ICollection<Flight> DepartingFlights { get; set; }
 
-	[InverseProperty(nameof(Flight.ArrivalAirport))]
-	public virtual ICollection<Flight> ArrivingFlights { get; set; }
+    [InverseProperty(nameof(Flight.ArrivalAirport))]
+    public virtual ICollection<Flight> ArrivingFlights { get; set; }
 }
